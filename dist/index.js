@@ -39,13 +39,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
-/*
- * @Author: iChengbo
- * @Date: 2021-09-14 22:04:39
- * @LastEditors: iChengbo
- * @LastEditTime: 2021-09-16 14:40:18
- * @FilePath: /action/src/main.ts
- */
 const core = __importStar(__nccwpck_require__(2186));
 const qrcode_1 = __importDefault(__nccwpck_require__(8726));
 /**
@@ -54,28 +47,20 @@ const qrcode_1 = __importDefault(__nccwpck_require__(8726));
  *   2.1 根据文件地址 path 生成 jsDelivr CDN 地址
  *   2.2 若有自建 CDN，则生成自建的 CDN 地址？
  * 3. 二维码：CDN 地址生成二维码图片
- * 4. 图片添加至项目中？
- * 5. ~~修改类似 CHANGELOG 的文件?~~
- * 6. git add + commit?
  */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const file = core.getInput('file');
-            // core.info(typeof file)
-            // core.info(`入口文件 ${file}`)
-            // core.debug(file)
-            // core.info(file)
-            // // 构建 CDN 地址
+            // 构建 CDN 地址
             const cdn = `https://cdn.jsdelivr.net/gh/${file}`;
-            // const cdn =
-            //   'https://github.com/iChengbo/react-native-error-helper/archive/refs/tags/v0.2.2.zip'
+            // TODO：自定义 CDN
             // 创建二维码
-            const QR_CODE_STRING = yield qrcode_1.default.toString(cdn, {
-                type: 'terminal'
-            });
-            core.info(QR_CODE_STRING);
-            core.setOutput('QR_CODE_STRING', QR_CODE_STRING);
+            // const QR_CODE_STRING = await QRCode.toString(cdn, {
+            //   type: 'terminal'
+            // })
+            // core.info(QR_CODE_STRING)
+            // core.setOutput('QR_CODE_STRING', QR_CODE_STRING)
             const QR_CODE_BASE64 = yield qrcode_1.default.toDataURL(cdn);
             core.setOutput('QR_CODE_BASE64', QR_CODE_BASE64);
             const QR_CODE_PNG_PATH = `${process.cwd()}/qrcode.png`;
