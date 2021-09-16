@@ -2,12 +2,11 @@
  * @Author: iChengbo
  * @Date: 2021-09-14 22:04:39
  * @LastEditors: iChengbo
- * @LastEditTime: 2021-09-15 11:11:45
+ * @LastEditTime: 2021-09-16 10:18:12
  * @FilePath: /action/src/main.ts
  */
 import * as core from '@actions/core'
-import * as fs from 'fs'
-import * as qrCreate from 'qr-image'
+import QRCode from 'qrcode'
 
 /**
  * 1. 入参：file(文件地址)、cdn(CDN 地址)
@@ -28,22 +27,17 @@ export async function run(): Promise<void> {
     core.info(file)
     // // 构建 CDN 地址
     const cnd = `https://cdn.jsdelivr.net/gh/${file}`
+    // const cnd =
+    //   'https://github.com/iChengbo/react-native-error-helper/archive/refs/tags/v0.2.2.zip'
 
-    // // 创建二维码
-    const qr_png = qrCreate.image(cnd, {type: 'png'})
-
-    // TODO: 生成的图片保存地址
-    if (!fs.existsSync('./qrcode')) {
-      fs.mkdirSync('./qrcode')
-    }
-    qr_png.pipe(fs.createWriteStream(`./qrcode/${+new Date()}.png`))
-    qr_png.pipe(fs.createWriteStream(`./qrcode/lastest.png`))
+    // 创建二维码
+    const QR_CODE_BASE64 = await QRCode.toDataURL(cnd)
+    core.info(`生成的二维码图片(base64): ${QR_CODE_BASE64}`)
+    core.setOutput('QR_CODE_BASE64', QR_CODE_BASE64)
 
     core.info('已经生成二维码啦')
-
-    // TODO: git add + git commit
   } catch (error) {
-    // core.setFailed(error.message)
+    core.setFailed(error.message)
   }
 }
 
