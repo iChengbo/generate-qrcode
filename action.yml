@@ -1,10 +1,10 @@
-name: 'Your name here'
+name: 'qrcode'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
   file:
     required: true
-    description: '文件入口'
+    description: 'file path'
     default: 'default value if applicable'
 outputs:
   QR_CODE_BASE64:
