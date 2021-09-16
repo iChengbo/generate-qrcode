@@ -20,7 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: test ci
+        id: getQRCode
         uses: ./
         with:
           # milliseconds: 1000
           file: wuba/taro-playground/package.json
+      - name: Get qrcode
+        run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_BASE64 }}"
