@@ -2,15 +2,15 @@ name: 'generate-qrcode'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  file:
+  text:
     required: true
-    description: 'file path'
+    description: 'qrcode text'
     default: 'default value if applicable'
 outputs:
   QR_CODE_BASE64:
     description: 'base64'
-  QR_CODE_STRING:
-    description: 'string'
+  # QR_CODE_STRING:
+  #   description: 'string'
   QR_CODE_PNG_PATH:
     description: 'png path'
 runs:
