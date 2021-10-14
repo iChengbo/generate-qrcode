@@ -23,10 +23,18 @@ jobs:
         id: getQRCode
         uses: ./
         with:
-          text: https://cdn.jsdelivr.net/gh/iChengbo/generate-qrcode/package.json
-      - name: Get qrcode base64
-        run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_BASE64 }}"
+          paths: |
+            https://cdn.jsdelivr.net/gh/iChengbo/generate-qrcode/package.json
+            https://cdn.jsdelivr.net/gh/iChengbo/generate-qrcode/src/main.ts
+
+      - name: Get Qrcode Names
+        run: |
+          echo "${{ steps.getQRCode.outputs.QR_CODE_PNG_NAMES }}" 
+          echo "first is ${{ steps.getQRCode.outputs.QR_CODE_PNG_NAMES.split(',') }}" 
+          echo "second is ${{ steps.getQRCode.outputs.QR_CODE_PNG_NAMES[1] }}" 
+      # - name: Get qrcode base64
+      #   run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_BASE64 }}"
       # - name: get qrcode string
       #   run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_STRING }}"
-      - name: get qrcode png path
-        run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_PNG_PATH }}"
+      # - name: get qrcode png path
+      #   run: echo "The base64 qrcode is ${{ steps.getQRCode.outputs.QR_CODE_PNG_PATH }}"

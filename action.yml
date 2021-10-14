@@ -1,17 +1,12 @@
 name: 'generate-qrcode'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+description: 'generate qrcode'
+author: 'iChengbo'
 inputs:
-  text:
+  paths:
     required: true
-    description: 'qrcode text'
-    default: 'default value if applicable'
+    description: 'qrcode content'
 outputs:
-  QR_CODE_BASE64:
-    description: 'base64'
-  # QR_CODE_STRING:
-  #   description: 'string'
-  QR_CODE_PNG_PATH:
+  QR_CODE_PNG_NAMES:
     description: 'png path'
 runs:
   using: 'node12'
