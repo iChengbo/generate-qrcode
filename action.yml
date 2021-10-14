@@ -2,12 +2,18 @@ name: 'generate-qrcode'
 description: 'generate qrcode'
 author: 'iChengbo'
 inputs:
-  paths:
+  text:
     required: true
-    description: 'qrcode content'
+    description: 'qrcode text'
 outputs:
-  QR_CODE_PNG_NAMES:
+  QR_CODE_BASE64:
+    description: 'base64'
+  # QR_CODE_STRING:
+  #   description: 'string'
+  QR_CODE_PNG_PATH:
     description: 'png path'
+  QR_CODE_PNG_NAME:
+    description: 'qrcode name'
 runs:
   using: 'node12'
   main: 'dist/index.js'
