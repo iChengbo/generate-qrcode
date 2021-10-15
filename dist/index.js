@@ -43,21 +43,16 @@ const core = __importStar(__nccwpck_require__(2186));
 const qrcode_1 = __importDefault(__nccwpck_require__(8726));
 const string_hash_1 = __importDefault(__nccwpck_require__(6148));
 /**
- * 字符串 转为 二维码
+ * 字符串 转为 二维码图片
  */
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const text = core.getInput('text');
-            // 创建二维码
-            // const QR_CODE_STRING = await QRCode.toString(text, {
-            //   type: 'terminal'
-            // })
-            // core.info(QR_CODE_STRING)
-            // core.setOutput('QR_CODE_STRING', QR_CODE_STRING)
+            const name = core.getInput('name');
             const QR_CODE_BASE64 = yield qrcode_1.default.toDataURL(text);
             core.setOutput('QR_CODE_BASE64', QR_CODE_BASE64);
-            const QR_CODE_PNG_NAME = `${string_hash_1.default(text)}.png`;
+            const QR_CODE_PNG_NAME = name ? `${name}.png` : `${string_hash_1.default(text)}.png`;
             core.setOutput('QR_CODE_PNG_NAME', QR_CODE_PNG_NAME);
             const QR_CODE_PNG_PATH = `${process.cwd()}/${QR_CODE_PNG_NAME}`;
             qrcode_1.default.toFile(QR_CODE_PNG_PATH, text, { type: 'png' }, err => {

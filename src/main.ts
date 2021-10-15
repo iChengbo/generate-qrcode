@@ -3,22 +3,17 @@ import QRCode from 'qrcode'
 import stringHash from 'string-hash'
 
 /**
- * 字符串 转为 二维码
+ * 字符串 转为 二维码图片
  */
 export async function run(): Promise<void> {
   try {
     const text = core.getInput('text')
-    // 创建二维码
-    // const QR_CODE_STRING = await QRCode.toString(text, {
-    //   type: 'terminal'
-    // })
-    // core.info(QR_CODE_STRING)
-    // core.setOutput('QR_CODE_STRING', QR_CODE_STRING)
+    const name = core.getInput('name')
 
     const QR_CODE_BASE64 = await QRCode.toDataURL(text)
     core.setOutput('QR_CODE_BASE64', QR_CODE_BASE64)
 
-    const QR_CODE_PNG_NAME = `${stringHash(text)}.png`
+    const QR_CODE_PNG_NAME = name ? `${name}.png` : `${stringHash(text)}.png`
     core.setOutput('QR_CODE_PNG_NAME', QR_CODE_PNG_NAME)
 
     const QR_CODE_PNG_PATH = `${process.cwd()}/${QR_CODE_PNG_NAME}`

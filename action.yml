@@ -5,11 +5,12 @@ inputs:
   text:
     required: true
     description: 'qrcode text'
+  name:
+    required: false
+    description: 'qrcode name'
 outputs:
   QR_CODE_BASE64:
     description: 'base64'
-  # QR_CODE_STRING:
-  #   description: 'string'
   QR_CODE_PNG_PATH:
     description: 'png path'
   QR_CODE_PNG_NAME:
