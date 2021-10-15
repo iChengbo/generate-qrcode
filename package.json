@@ -33,7 +33,7 @@
     "@types/node": "^16.3.3",
     "@types/qrcode": "^1.4.1",
     "@types/string-hash": "^1.1.1",
-    "@typescript-eslint/parser": "^4.28.3",
+    "@typescript-eslint/parser": "^5.0.0",
     "@vercel/ncc": "^0.31.1",
     "eslint": "^7.31.0",
     "eslint-plugin-github": "^4.1.1",
